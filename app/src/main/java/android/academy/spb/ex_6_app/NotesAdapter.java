@@ -50,8 +50,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NoteHolder> 
     }
 
     public void updateAll(List<Note> noteList) {
-        this.noteList.clear();
-        this.noteList.addAll(noteList);
+        this.noteList = noteList;
         notifyDataSetChanged();
     }
 
@@ -67,8 +66,8 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NoteHolder> 
 
         noteList.add(0, note);
 
-        //notifyItemInserted(0);
-        notifyDataSetChanged();
+        notifyItemInserted(0);
+
     }
 
     class NoteHolder extends RecyclerView.ViewHolder {

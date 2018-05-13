@@ -29,7 +29,10 @@ public class MainActivity extends AppCompatActivity {
 
         mNotesRecyclerView = findViewById(R.id.notes_recycler_view);
 
-        mNotesRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        //linearLayoutManager.setReverseLayout(true);
+        //linearLayoutManager.setStackFromEnd(true);
+        mNotesRecyclerView.setLayoutManager(linearLayoutManager);
 
         mNotesAdapter = new NotesAdapter();
         mNotesRecyclerView.setAdapter(mNotesAdapter);
@@ -70,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
                     note.setBody(bodyEditText.getText().toString());
                     AppDatabase.getInstance(MainActivity.this).noteDao().Insert(note);
                     mNotesAdapter.insertNote(note);
+                    mNotesRecyclerView.scrollToPosition(0);
                 }
             }
         });
